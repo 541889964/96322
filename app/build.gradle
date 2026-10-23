@@ -6,11 +6,23 @@ android {
         applicationId "com.example.deepseekpow"
         minSdk 27
         targetSdk 33
-        versionCode 1
+        versionCode 2
         versionName "1.1"
     }
     buildFeatures { viewBinding true }
-    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    
+    // 强制使用 Debug 签名（解决装不上的问题）
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+        }
+    }
+    
+    compileOptions { 
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17 
+    }
 }
 dependencies {
     compileOnly 'de.robv.android.xposed:api:82'
